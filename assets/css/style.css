@@ -10,7 +10,6 @@ body {
 	margin: 5vh 10vw 0 0;
 }
 .character-div, .enemy-div {
-	margin: 3vh 0 0 0;
 	height: 35vh;
 }
 
@@ -19,7 +18,7 @@ body {
 	width: 15vw;
 	height: 30vh;
 	float: left;
-	margin: 2vh 0 2vh 1vw;
+	margin: 0 0 0 1vw;
 	background-color: #fff;
 	text-align: center;
 }
@@ -27,37 +26,55 @@ body {
 .character-box h1 {
 	color: #fff;
 	font-size: 1em;
+	display: block;
+}
+
+.health {
+	margin-top: .6vh;
+	font-size: 1.2em;
 }
 
 .character-box img {
-	height: 25vh;
-	width: 15vw;
+	height: 80%;
+	width: 90%;
 }
 
 .character-header {
 	color: yellow;
 	font-size: 2em;
-	float: none;
+	margin: 2vh 0 2vh 3vw;
 }
 
-.hero-div, .enemy-div {
-	height: 30vh;
-}
+.hero-div {
+/*	height: 30vh;
+*/}
 
-.enemy-div .character-box {
+.enemies .character-box {
 	background-color: red;
-	border: #000 solid 2px;
-}
-
-.enemy-div .character-div {
-	position: absolute;
-	left: 0;
+	border: yellow solid 2px;
 }
 
 .enemy-header {
 	color: yellow;
 	font-size: 2em;
-	margin: 5vh 0 0 0;
-	float: left;
+	margin: 35vh 0 2vh 3vw;
+}
+
+.enemies {
+	margin-top: 2vh;
+}
+
+.enemy {
+	background-color: red;
+	border: yellow solid 2px;
+}
+
+.attack-button {
+	background-color: #aaa;
+	color: #000;
+	margin: 0 0 0 30vw;
+	font-size: 2em;
+	width: 15vw;
+	height: 5vh;
 }
 
