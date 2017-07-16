@@ -1,0 +1,63 @@
+body {
+	background: url(../images/main-bg.jpg);
+	background-size: cover;
+}
+
+.main-header {
+	color: yellow;
+	font-size: 3em;
+	float: right;
+	margin: 5vh 10vw 0 0;
+}
+.character-div, .enemy-div {
+	margin: 3vh 0 0 0;
+	height: 35vh;
+}
+
+.character-box {
+	border: green solid 3px;
+	width: 15vw;
+	height: 30vh;
+	float: left;
+	margin: 2vh 0 2vh 1vw;
+	background-color: #fff;
+	text-align: center;
+}
+
+.character-box h1 {
+	color: #fff;
+	font-size: 1em;
+}
+
+.character-box img {
+	height: 25vh;
+	width: 15vw;
+}
+
+.character-header {
+	color: yellow;
+	font-size: 2em;
+	float: none;
+}
+
+.hero-div, .enemy-div {
+	height: 30vh;
+}
+
+.enemy-div .character-box {
+	background-color: red;
+	border: #000 solid 2px;
+}
+
+.enemy-div .character-div {
+	position: absolute;
+	left: 0;
+}
+
+.enemy-header {
+	color: yellow;
+	font-size: 2em;
+	margin: 5vh 0 0 0;
+	float: left;
+}
+
