@@ -10,6 +10,7 @@
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+	
 
 	<h1 class="main-header">Star Wars RPG!</h1>
 
@@ -17,16 +18,18 @@
 
 	<div class="character-div">
 
-		<div class="character-box yoda"><h2>Yoda</h2><img src="assets/images/yoda.jpg" alt="yoda"><span id="health">0</span></div>
-		<div class="character-box luke"><h2>Luke Skywalker</h2><img src="assets/images/luke.jpg" alt="luke"><span id="health">0</span></div>
-		<div class="character-box maul"><h2>Darth Maul</h2><img src="assets/images/maul.jpg" alt="maul"><span id="health">0</span></div>
-		<div class="character-box hans"><h2>Hans Solo</h2><img src="assets/images/hans.jpg" alt="hans"><span id="health">0</span></div>
+		<div class="character-box yoda"><h2>Yoda</h2><img src="assets/images/yoda.jpg" alt="yoda"><h4 class="health" id="yodaHealth"></h4></div>
+		<div class="character-box luke"><h2>Luke Skywalker</h2><img src="assets/images/luke.jpg" alt="luke"><h4 class="health" id="lukeHealth"></h4></div>
+		<div class="character-box maul"><h2>Darth Maul</h2><img src="assets/images/maul.jpg" alt="maul"><h4 class="health" id="maulHealth"></h4></div>
+		<div class="character-box hans"><h2>Hans Solo</h2><img src="assets/images/hans.jpg" alt="hans"><h4 class="health" id="hansHealth"></h4></div>
 
 	</div> <br>
 
 	<div class="hero-div"></div>
 	
 	<div class="enemy-div"></div>
+
+	<div class="fight-div"></div>
 
 
 	<script src="assets/javascript/game.js"></script>
