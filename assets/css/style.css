@@ -30,7 +30,6 @@ body {
 }
 
 .health {
-	margin-top: .6vh;
 	font-size: 1.2em;
 }
 
@@ -76,5 +75,17 @@ body {
 	font-size: 2em;
 	width: 15vw;
 	height: 5vh;
+}
+
+.attackNotes {
+	color: yellow;
+	margin: 0 0 3vh 30vw;
+	font-size: 2em;
+}
+
+.nextEnemy {
+	color: yellow;
+	font-size: 2em;
+	margin: 0 0 0 50vw;
 }
 
