@@ -11,7 +11,7 @@ $(document).ready(function () {
 	var luke = {
 		health: 100,
 		attack: 12,
-		counterAttack: 12,
+		counterAttack: 14,
 		name: "#lukeHealth",
 		realName: "Luke Skywalker"
 	}
@@ -19,7 +19,7 @@ $(document).ready(function () {
 	var maul = {
 		health: 150,
 		attack: 10,
-		counterAttack: 10,
+		counterAttack: 16,
 		name: "#maulHealth",
 		realName: "Darth Maul"
 	}
@@ -27,7 +27,7 @@ $(document).ready(function () {
 	var hans = {
 		health: 125,
 		attack: 9,
-		counterAttack: 13,
+		counterAttack: 15,
 		name: "#hansHealth",
 		realName: "Hans Solo"
 	}	
@@ -128,9 +128,10 @@ $(document).ready(function () {
 	}
 
 	function gameOver(){
-		if (enemyObject.health < 1) {
+		if (userObject.health < 1) {
 			if ($(".character-div.enemies:empty")){
-				alert("Game over!");
+				alert("You are NOT the chosen one!");
+			$("<br><br> <button class='gameOver'><a href='index.html'>Play again?</a></button>").insertAfter($(".attack-button"));
 			}
 		}
 	}
@@ -140,12 +141,19 @@ $(document).ready(function () {
 		$(document.body).on('click','.attack-button', function(){
 	
 		$(".fight-div").css("padding","5vh 15vw 15vh 15vw");
+		// 	 // If both the hero and enemy are still alive
+		// if (userObject.health > 0 && enemyObject.health > 0) {
+			
+		// }
     
 		 // If both the hero and enemy are still alive
 		if (userObject.health > 0 && enemyObject.health > 0) {
 			 // Attack notes
 			$(".attackNotes").html(userObject.realName + " attacked " + enemyObject.realName + " for " + (userObject.attack + previousAttack) + " damage.<br>" + enemyObject.realName + " counter-attacked for " + enemyObject.counterAttack + " damage.") ;
  			$(".attackNotes").css({"background-color":"transparent","color":"yellow"});
+ 			 // Subtract enemy counter-attack from user health, display new value to html
+			userObject.health -= enemyObject.counterAttack;
+			$(userObject.name).text(userObject.health);
  			 // Subtract user attack from enemy health, display new value to html
 			enemyObject.health -= (userObject.attack + previousAttack);
 			$(enemyObject.name).text(enemyObject.health);
@@ -168,7 +176,7 @@ $(document).ready(function () {
 			alreadyDisplayed = true;
 			fighting = false;
 			}
-			gameOver();
+			
 	   	}
 		 // If the user dies
 		if (userObject.health < 1) {
@@ -180,14 +188,10 @@ $(document).ready(function () {
 			userDead = true;
 			fighting = false;
 			}
+			gameOver();
 		}
 
-		 // If both the hero and enemy are still alive
-		if (userObject.health > 0 && enemyObject.health > 0) {
-			 // Subtract enemy counter-attack from user health, display new value to html
-			userObject.health -= enemyObject.counterAttack;
-			$(userObject.name).text(userObject.health);
-		}
+	
 
 		
 		}); // attack-button on click

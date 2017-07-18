@@ -97,7 +97,12 @@ body {
 	height: 10vh;
 	font-size: 2em;
 	font-weight: 700;
+	text-align: center;
 	border-radius: 10px;
+	text-decoration: none;
+}
 
+.gameOver a {
+	color: #000;
 }
 
