@@ -1,17 +1,17 @@
 $(document).ready(function () {
 
 	var yoda = {
-		health: 80,
-		attack: 10,
-		counterAttack: 20,
+		health: 90,
+		attack: 18,
+		counterAttack: 18,
 		name: "#yodaHealth",
 		realName: "Yoda"
 	}
 
 	var luke = {
 		health: 100,
-		attack: 8,
-		counterAttack: 15,
+		attack: 12,
+		counterAttack: 12,
 		name: "#lukeHealth",
 		realName: "Luke Skywalker"
 	}
@@ -27,7 +27,7 @@ $(document).ready(function () {
 	var hans = {
 		health: 125,
 		attack: 9,
-		counterAttack: 15,
+		counterAttack: 13,
 		name: "#hansHealth",
 		realName: "Hans Solo"
 	}	
@@ -41,7 +41,6 @@ $(document).ready(function () {
 
 	var enemyObject; // Grabs object of selected enemy
 	var userObject; // Grabs object of selected user
-	var buttonThere; // Prevents multiple attack buttons from appearing
 	var remainingEnemies; // used to store detached enemies
 	var nextEnemy;
 	var attackNotes;
@@ -49,6 +48,9 @@ $(document).ready(function () {
 	var characterChosen = false;
 	var enemyChosen = false;
 	var fighting = false;
+	var attackedYet = false;
+	var userDead = false;
+	var alreadyDisplayed = false;
 	$("#yodaHealth").text(yoda.health);
 	$("#lukeHealth").text(luke.health);
 	$("#maulHealth").text(maul.health);
@@ -121,17 +123,18 @@ $(document).ready(function () {
 	
 
 $(document.body).on('click','.attack-button', function(){
-	// nextEnemy = $(".nextEnemy").detach();
-	// attackNotes = $(".attackNotes").detach();
-	$(".fight-div").prepend(attackNotes);
-    $(".attackNotes").css("color","yellow");
-
-
-	$(".fight-div").css("padding","0 15vw 15vh 15vw");
+	$(".fight-div").css("padding","5vh 15vw 15vh 15vw");
+    
+    if (attackedYet === false) {
+    	$(".fight-div").prepend(attackNotes);
+  	    $(".attackNotes").css("color","yellow");
+    	attackedYet = true;
+    }
 		 // If both the hero and enemy are still alive
 		if(userObject.health > 0 && enemyObject.health > 0) {
 			 // Attack notes
 			$(".attackNotes").html(userObject.realName + " attacked " + enemyObject.realName + " for " + (userObject.attack + previousAttack) + " damage.<br>" + enemyObject.realName + " counter-attacked for " + enemyObject.counterAttack + " damage.") ;
+ 			$(".attackNotes").css({"background-color":"transparent","color":"yellow"});
  			 // Subtract user attack from enemy health, display new value to html
 			enemyObject.health -= (userObject.attack + previousAttack);
 			$(enemyObject.name).text(enemyObject.health);
@@ -143,35 +146,50 @@ $(document.body).on('click','.attack-button', function(){
 		}
 		 // If the enemy dies
 		if (enemyObject.health < 1) {
-
+			$(".attack-button").remove();
 			 // Attack notes
 			$(".attackNotes").html("You killed " + enemyObject.realName + "!");
-			$(".attackNotes").css({"color":"green", "margin":"0 0vw 0 20vw"});
+			$(".attackNotes").css({"font-weight":"700","color":"red","font-size":"2em","margin":"0 0vw 0 20vw"});
 			$(".enemy").remove();
 			$(".enemy-div").append(remainingEnemies);
 			$(".character-div").children($(".character-box")).addClass("alive");
-			$("<h2 class='nextEnemy'> Select your next enemy</h2>").insertAfter($(".attackNotes"));
-
+			
+			if (alreadyDisplayed === false) {
+			$("<h2 class='nextEnemy'> Select your next enemy</h2>").insertBefore($(".fight-div"));
+			alreadyDisplayed = true;
+			fighting = false;
+			}
 		}
 		 // If the user dies
 		if (userObject.health < 1) {
 			 // Attack notes
 			$(".attackNotes").html("You died!");
 			$(".attackNotes").css("color","red");
+			if (userDead = false) {
+			$("<br><br> <button class='gameOver'><a href='index.html'>Play again?</a></button>").insertAfter($(".attack-button"));
+			userDead = true;
+			fighting = false;
+			}
 		}
 
 
-		});
+	}); // attack-button on click
 
+ // Select next enemy
 $(document.body).on('click', '.alive' , function() {		
 	remainingEnemies = $(".character-div.enemies").detach();
-	nextEnemy = $(".nextEnemy").detach();
-	attackNotes = $(".attackNotes").detach();
+	$(this).removeClass("alive");
+	$(".nextEnemy").text("");
+	$(".attackNotes").text("");
 	$(".enemy-div").append($(this));
 	 // CSS creating fight scene and enlarging character cards
 	$(".fight-div").css("padding","15vh 15vw");
 	$(".character-box").css({"width":"30vw", "height":"45vh", "margin":"0 1vw", "font-size":"1.5em"});
-		   
+	fighting = true;
+	$("<button class='attack-button'>Attack</button>").insertAfter($(".fight-div"));
+
+
+
 });
 
 
